@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>La Bella – Italienisches Restaurant</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@400;500&display=swap');
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --gold: #c9a84c;
+      --dark: #0d0b08;
+      --card: #1a1610;
+      --text: #f5f0e8;
+      --muted: #8a7e6e;
+    }
+    body { font-family: 'Inter', sans-serif; background: var(--dark); color: var(--text); }
+    a { text-decoration: none; color: inherit; }
+
+    /* NAVBAR */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      padding: 1.2rem 2rem;
+      display: flex; align-items: center; justify-content: space-between;
+      background: rgba(13,11,8,0.9); backdrop-filter: blur(10px);
+      border-bottom: 1px solid rgba(201,168,76,0.2);
+    }
+    .nav-logo { font-family: 'Playfair Display', serif; font-size: 1.6rem; color: var(--gold); }
+    .nav-links { display: flex; gap: 2rem; list-style: none; }
+    .nav-links a { color: var(--muted); font-size: 0.9rem; transition: color 0.3s; }
+    .nav-links a:hover { color: var(--text); }
+    .nav-btn {
+      padding: 0.6rem 1.5rem;
+      background: var(--gold);
+      color: var(--dark);
+      border-radius: 8px;
+      font-weight: 600;
+      font-size: 0.85rem;
+    }
+
+    /* HERO */
+    .hero {
+      min-height: 100vh;
+      display: flex; align-items: center;
+      padding: 6rem 2rem 4rem;
+      background: linear-gradient(to bottom, #0d0b08 0%, #1a1008 100%);
+      position: relative; overflow: hidden;
+    }
+    .hero::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: radial-gradient(ellipse at 60% 40%, rgba(201,168,76,0.07) 0%, transparent 60%);
+    }
+    .hero-inner { max-width: 650px; }
+    .hero-tag {
+      color: var(--gold); font-size: 0.8rem; letter-spacing: 3px;
+      text-transform: uppercase; margin-bottom: 1.5rem;
+    }
+    .hero h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2.5rem, 6vw, 4.5rem);
+      line-height: 1.15; margin-bottom: 1.5rem;
+    }
+    .hero h1 span { color: var(--gold); }
+    .hero p { color: var(--muted); font-size: 1.1rem; line-height: 1.8; margin-bottom: 2.5rem; max-width: 500px; }
+    .hero-actions { display: flex; gap: 1rem; flex-wrap: wrap; }
+    .btn-gold {
+      padding: 0.85rem 2rem; background: var(--gold); color: var(--dark);
+      border-radius: 8px; font-weight: 600; font-size: 0.95rem;
+    }
+    .btn-border {
+      padding: 0.85rem 2rem; border: 1px solid var(--gold); color: var(--gold);
+      border-radius: 8px; font-weight: 600; font-size: 0.95rem;
+    }
+
+    /* SECTION */
+    .section { padding: 5rem 2rem; }
+    .section-inner { max-width: 1100px; margin: 0 auto; }
+    .section-tag { color: var(--gold); font-size: 0.8rem; letter-spacing: 3px; text-transform: uppercase; margin-bottom: 1rem; display: block; }
+    .section-title { font-family: 'Playfair Display', serif; font-size: clamp(1.8rem, 4vw, 2.8rem); margin-bottom: 1rem; }
+    .section-sub { color: var(--muted); font-size: 1rem; max-width: 500px; }
+
+    /* MENU */
+    .menu-bg { background: var(--card); }
+    .menu-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2rem; margin-top: 3rem; }
+    .menu-category h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.3rem; color: var(--gold);
+      border-bottom: 1px solid rgba(201,168,76,0.3);
+      padding-bottom: 0.75rem; margin-bottom: 1.5rem;
+    }
+    .menu-item { margin-bottom: 1.25rem; }
+    .menu-item-header { display: flex; justify-content: space-between; align-items: baseline; }
+    .menu-item-name { font-weight: 600; font-size: 0.95rem; }
+    .menu-item-price { color: var(--gold); font-weight: 600; font-size: 0.9rem; flex-shrink: 0; margin-left: 1rem; }
+    .menu-item-desc { color: var(--muted); font-size: 0.85rem; margin-top: 0.25rem; line-height: 1.5; }
+
+    /* RESERVATION */
+    .reservation-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: start; }
+    .reservation-info h3 { font-family: 'Playfair Display', serif; font-size: 1.5rem; margin-bottom: 1.5rem; }
+    .info-row { display: flex; gap: 1rem; margin-bottom: 1rem; align-items: flex-start; }
+    .info-icon { color: var(--gold); width: 20px; flex-shrink: 0; margin-top: 2px; }
+    .info-text { color: var(--muted); font-size: 0.95rem; line-height: 1.6; }
+    .reservation-form {
+      background: var(--card); border: 1px solid rgba(201,168,76,0.15);
+      border-radius: 16px; padding: 2rem;
+    }
+    .form-title { font-family: 'Playfair Display', serif; font-size: 1.3rem; margin-bottom: 1.5rem; }
+    .form-group { margin-bottom: 1.25rem; }
+    .form-group label { display: block; font-size: 0.85rem; color: var(--muted); margin-bottom: 0.4rem; }
+    .form-group input, .form-group select {
+      width: 100%; padding: 0.75rem 1rem;
+      background: var(--dark); border: 1px solid rgba(201,168,76,0.2);
+      border-radius: 8px; color: var(--text); font-family: inherit; font-size: 0.95rem;
+    }
+    .form-group input:focus, .form-group select:focus { outline: none; border-color: var(--gold); }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+
+    /* FOOTER */
+    footer {
+      background: var(--card); border-top: 1px solid rgba(201,168,76,0.15);
+      padding: 2.5rem 2rem; text-align: center;
+    }
+    .footer-logo { font-family: 'Playfair Display', serif; font-size: 1.5rem; color: var(--gold); margin-bottom: 0.5rem; }
+    .footer-copy { color: var(--muted); font-size: 0.85rem; margin-top: 1rem; }
+    .footer-note {
+      margin-top: 1.5rem; padding-top: 1.5rem; border-top: 1px solid rgba(255,255,255,0.1);
+      color: var(--muted); font-size: 0.8rem;
+    }
+    .footer-note a { color: var(--gold); }
+
+    @media (max-width: 768px) {
+      .nav-links { display: none; }
+      .reservation-layout { grid-template-columns: 1fr; }
+      .form-row { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <div class="nav-logo">La Bella</div>
+    <ul class="nav-links">
+      <li><a href="#speisekarte">Speisekarte</a></li>
+      <li><a href="#reservierung">Reservierung</a></li>
+      <li><a href="#kontakt">Kontakt</a></li>
+    </ul>
+    <a href="#reservierung" class="nav-btn">Tisch reservieren</a>
+  </nav>
+
+  <section class="hero">
+    <div class="hero-inner">
+      <p class="hero-tag">Seit 1998 in München</p>
+      <h1>Authentische <span>Italienische</span> Küche</h1>
+      <p>Erleben Sie die Aromen Italiens — von handgemachter Pasta bis zu feinen Weinen. Ein unvergessliches Dinner in entspannter Atmosphäre.</p>
+      <div class="hero-actions">
+        <a href="#reservierung" class="btn-gold">Tisch reservieren</a>
+        <a href="#speisekarte" class="btn-border">Speisekarte ansehen</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section menu-bg" id="speisekarte">
+    <div class="section-inner">
+      <span class="section-tag">Unsere Küche</span>
+      <h2 class="section-title">Speisekarte</h2>
+      <p class="section-sub">Alle Gerichte werden täglich frisch mit regionalen und importierten Zutaten zubereitet.</p>
+      <div class="menu-grid">
+        <div class="menu-category">
+          <h3>Antipasti</h3>
+          <div class="menu-item">
+            <div class="menu-item-header"><span class="menu-item-name">Bruschetta al Pomodoro</span><span class="menu-item-price">8,50€</span></div>
+            <p class="menu-item-desc">Geröstetes Brot mit frischen Tomaten, Basilikum und nativem Olivenöl</p>
+          </div>
+          <div class="menu-item">
+            <div class="menu-item-header"><span class="menu-item-name">Carpaccio di Manzo</span><span class="menu-item-price">14,90€</span></div>
+            <p class="menu-item-desc">Hauchdünn geschnittenes Rinderfilet, Rucola, Parmesan, Zitrone</p>
+          </div>
+          <div class="menu-item">
+            <div class="menu-item-header"><span class="menu-item-name">Burrata con Prosciutto</span><span class="menu-item-price">13,50€</span></div>
+            <p class="menu-item-desc">Frische Burrata mit Parmaschinken und Kirschtomaten</p>
+          </div>
+        </div>
+        <div class="menu-category">
+          <h3>Pasta & Risotto</h3>
+          <div class="menu-item">
+            <div class="menu-item-header"><span class="menu-item-name">Tagliatelle al Ragù</span><span class="menu-item-price">18,90€</span></div>
+            <p class="menu-item-desc">Hausgemachte Tagliatelle mit langsam geschmortem Rindfleisch-Ragù</p>
+          </div>
+          <div class="menu-item">
+            <div class="menu-item-header"><span class="menu-item-name">Risotto ai Funghi Porcini</span><span class="menu-item-price">19,50€</span></div>
+            <p class="menu-item-desc">Cremiges Risotto mit Steinpilzen und frischem Thymian</p>
+          </div>
+          <div class="menu-item">
+            <div class="menu-item-header"><span class="menu-item-name">Spaghetti alle Vongole</span><span class="menu-item-price">22,90€</span></div>
+            <p class="menu-item-desc">Spaghetti mit Venusmuscheln, Weißwein, Knoblauch und Petersilie</p>
+          </div>
+        </div>
+        <div class="menu-category">
+          <h3>Dolci</h3>
+          <div class="menu-item">
+            <div class="menu-item-header"><span class="menu-item-name">Tiramisù Classico</span><span class="menu-item-price">8,90€</span></div>
+            <p class="menu-item-desc">Original Tiramisù nach Hausrezept</p>
+          </div>
+          <div class="menu-item">
+            <div class="menu-item-header"><span class="menu-item-name">Panna Cotta</span><span class="menu-item-price">7,50€</span></div>
+            <p class="menu-item-desc">Mit Waldbeer-Coulis</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="reservierung">
+    <div class="section-inner">
+      <span class="section-tag">Tisch reservieren</span>
+      <h2 class="section-title">Reservierung</h2>
+      <div class="reservation-layout" style="margin-top:3rem">
+        <div class="reservation-info">
+          <h3>Besuchen Sie uns</h3>
+          <div class="info-row">
+            <span class="info-icon">📍</span>
+            <div class="info-text">Maximilianstraße 42<br>80539 München</div>
+          </div>
+          <div class="info-row">
+            <span class="info-icon">🕐</span>
+            <div class="info-text">Di–Sa: 12:00 – 14:30 Uhr<br>Di–So: 18:00 – 23:00 Uhr<br>Montag geschlossen</div>
+          </div>
+          <div class="info-row">
+            <span class="info-icon">📞</span>
+            <div class="info-text">+49 89 12345678</div>
+          </div>
+          <div class="info-row">
+            <span class="info-icon">✉️</span>
+            <div class="info-text">info@labella-muenchen.de</div>
+          </div>
+        </div>
+        <div class="reservation-form">
+          <p class="form-title">Tisch reservieren</p>
+          <div class="form-row">
+            <div class="form-group">
+              <label>Vorname</label>
+              <input type="text" placeholder="Maria">
+            </div>
+            <div class="form-group">
+              <label>Nachname</label>
+              <input type="text" placeholder="Rossi">
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label>Datum</label>
+              <input type="date">
+            </div>
+            <div class="form-group">
+              <label>Uhrzeit</label>
+              <select>
+                <option>18:00</option><option>18:30</option><option>19:00</option>
+                <option>19:30</option><option>20:00</option><option>20:30</option>
+                <option>21:00</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-group">
+            <label>Anzahl Personen</label>
+            <select>
+              <option>1 Person</option><option>2 Personen</option><option>3 Personen</option>
+              <option>4 Personen</option><option>5–6 Personen</option><option>7+ Personen</option>
+            </select>
+          </div>
+          <button class="btn-gold" style="width:100%;border:none;cursor:pointer;padding:0.85rem;font-size:1rem">Tisch reservieren</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer id="kontakt">
+    <div class="footer-logo">La Bella</div>
+    <p style="color:#8a7e6e;font-size:0.9rem">Maximilianstraße 42 · 80539 München · +49 89 12345678</p>
+    <p class="footer-copy">© 2026 La Bella Ristorante. Alle Rechte vorbehalten.</p>
+    <p class="footer-note">Demo-Webseite erstellt von <a href="https://mynewweb.de">Mynewweb.de</a></p>
+  </footer>
+
+</body>
+</html>
