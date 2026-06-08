@@ -248,56 +248,38 @@
     </div>
   </section>
 
-  <section class="section" id="reservierung">
-    <div class="section-inner">
+  <!-- RESERVIERUNG -->
+  <section class="section menu-bg" id="reservierung">
+    <div class="section-inner" style="display:flex;flex-direction:column;align-items:center;text-align:center">
       <span class="section-tag">Tisch reservieren</span>
       <h2 class="section-title">Reservierung</h2>
-      <div class="reservation-layout" style="margin-top:3rem">
-        <div class="reservation-info">
-          <h3>Besuchen Sie uns</h3>
-          <div class="info-row">
-            <span class="info-icon">📍</span>
-            <div class="info-text">Maximilianstraße 42<br>80539 München</div>
+      <p class="section-sub" style="margin-bottom:3rem">Reservieren Sie Ihren Tisch bequem online. Wir freuen uns auf Ihren Besuch.</p>
+      <div class="reservation-form" style="width:100%;max-width:580px;text-align:left">
+        <div class="form-row">
+          <div class="form-group">
+            <label>Vorname</label>
+            <input type="text" placeholder="Maria">
           </div>
-          <div class="info-row">
-            <span class="info-icon">🕐</span>
-            <div class="info-text">Di–Sa: 12:00 – 14:30 Uhr<br>Di–So: 18:00 – 23:00 Uhr<br>Montag geschlossen</div>
-          </div>
-          <div class="info-row">
-            <span class="info-icon">📞</span>
-            <div class="info-text">+49 89 12345678</div>
-          </div>
-          <div class="info-row">
-            <span class="info-icon">✉️</span>
-            <div class="info-text">info@labella-muenchen.de</div>
+          <div class="form-group">
+            <label>Nachname</label>
+            <input type="text" placeholder="Rossi">
           </div>
         </div>
-        <div class="reservation-form">
-          <p class="form-title">Tisch reservieren</p>
-          <div class="form-row">
-            <div class="form-group">
-              <label>Vorname</label>
-              <input type="text" placeholder="Maria">
-            </div>
-            <div class="form-group">
-              <label>Nachname</label>
-              <input type="text" placeholder="Rossi">
-            </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label>Datum</label>
+            <input type="date">
           </div>
-          <div class="form-row">
-            <div class="form-group">
-              <label>Datum</label>
-              <input type="date">
-            </div>
-            <div class="form-group">
-              <label>Uhrzeit</label>
-              <select>
-                <option>18:00</option><option>18:30</option><option>19:00</option>
-                <option>19:30</option><option>20:00</option><option>20:30</option>
-                <option>21:00</option>
-              </select>
-            </div>
+          <div class="form-group">
+            <label>Uhrzeit</label>
+            <select>
+              <option>18:00</option><option>18:30</option><option>19:00</option>
+              <option>19:30</option><option>20:00</option><option>20:30</option>
+              <option>21:00</option>
+            </select>
           </div>
+        </div>
+        <div class="form-row">
           <div class="form-group">
             <label>Anzahl Personen</label>
             <select>
@@ -305,13 +287,50 @@
               <option>4 Personen</option><option>5–6 Personen</option><option>7+ Personen</option>
             </select>
           </div>
-          <button class="btn-gold" style="width:100%;border:none;cursor:pointer;padding:0.85rem;font-size:1rem">Tisch reservieren</button>
+          <div class="form-group">
+            <label>Anlass (optional)</label>
+            <select>
+              <option>Kein besonderer Anlass</option><option>Geburtstag</option>
+              <option>Jubiläum</option><option>Geschäftsessen</option><option>Sonstiges</option>
+            </select>
+          </div>
+        </div>
+        <button class="btn-gold" style="width:100%;border:none;cursor:pointer;padding:0.85rem;font-size:1rem;margin-top:0.5rem">Tisch reservieren</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- KONTAKT -->
+  <section class="section" id="kontakt">
+    <div class="section-inner">
+      <span class="section-tag">Kontakt</span>
+      <h2 class="section-title">Besuchen Sie uns</h2>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:2rem;margin-top:3rem">
+        <div style="background:var(--card);border:1px solid rgba(201,168,76,0.15);border-radius:16px;padding:2rem">
+          <div style="font-size:1.8rem;margin-bottom:1rem">📍</div>
+          <h4 style="font-family:'Playfair Display',serif;color:var(--gold);margin-bottom:0.75rem">Adresse</h4>
+          <p style="color:var(--muted);line-height:1.8">Maximilianstraße 42<br>80539 München</p>
+        </div>
+        <div style="background:var(--card);border:1px solid rgba(201,168,76,0.15);border-radius:16px;padding:2rem">
+          <div style="font-size:1.8rem;margin-bottom:1rem">🕐</div>
+          <h4 style="font-family:'Playfair Display',serif;color:var(--gold);margin-bottom:0.75rem">Öffnungszeiten</h4>
+          <p style="color:var(--muted);line-height:1.8">Di–Sa: 12:00 – 14:30 Uhr<br>Di–So: 18:00 – 23:00 Uhr<br>Montag geschlossen</p>
+        </div>
+        <div style="background:var(--card);border:1px solid rgba(201,168,76,0.15);border-radius:16px;padding:2rem">
+          <div style="font-size:1.8rem;margin-bottom:1rem">📞</div>
+          <h4 style="font-family:'Playfair Display',serif;color:var(--gold);margin-bottom:0.75rem">Telefon</h4>
+          <p style="color:var(--muted);line-height:1.8">+49 89 12345678</p>
+        </div>
+        <div style="background:var(--card);border:1px solid rgba(201,168,76,0.15);border-radius:16px;padding:2rem">
+          <div style="font-size:1.8rem;margin-bottom:1rem">✉️</div>
+          <h4 style="font-family:'Playfair Display',serif;color:var(--gold);margin-bottom:0.75rem">E-Mail</h4>
+          <p style="color:var(--muted);line-height:1.8">info@labella-muenchen.de</p>
         </div>
       </div>
     </div>
   </section>
 
-  <footer id="kontakt">
+  <footer>
     <div class="footer-logo">La Bella</div>
     <p style="color:#8a7e6e;font-size:0.9rem">Maximilianstraße 42 · 80539 München · +49 89 12345678</p>
     <p class="footer-copy">© 2026 La Bella Ristorante. Alle Rechte vorbehalten.</p>
