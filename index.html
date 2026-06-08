@@ -161,6 +161,40 @@
     </div>
   </section>
 
+  <!-- SLIDESHOW -->
+  <section style="position:relative;overflow:hidden;height:520px;background:var(--dark)">
+    <div id="slideshow" style="display:flex;height:100%;transition:transform 0.7s ease">
+      <div style="min-width:100%;height:100%;background:url('https://images.unsplash.com/photo-1756680967373-c3205a8a8b31?w=1400&q=80') center/cover no-repeat"></div>
+      <div style="min-width:100%;height:100%;background:url('https://images.unsplash.com/photo-1622322781846-37e0262fa0e0?w=1400&q=80') center/cover no-repeat"></div>
+      <div style="min-width:100%;height:100%;background:url('https://images.unsplash.com/photo-1779819710478-7ee6cd2a7fb5?w=1400&q=80') center/cover no-repeat"></div>
+      <div style="min-width:100%;height:100%;background:url('https://images.unsplash.com/photo-1778931163785-c266344f28fe?w=1400&q=80') center/cover no-repeat"></div>
+      <div style="min-width:100%;height:100%;background:url('https://images.unsplash.com/photo-1729095250365-6015f4b33395?w=1400&q=80') center/cover no-repeat"></div>
+    </div>
+    <!-- overlay -->
+    <div style="position:absolute;inset:0;background:linear-gradient(to bottom,rgba(13,11,8,0.35),rgba(13,11,8,0.55))"></div>
+    <!-- label -->
+    <div style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);text-align:center;z-index:2">
+      <p style="color:var(--gold);font-size:0.75rem;letter-spacing:4px;text-transform:uppercase;margin-bottom:0.75rem">Unsere Atmosphäre</p>
+      <h2 style="font-family:'Playfair Display',serif;font-size:clamp(1.8rem,4vw,3rem);color:#f5f0e8">Erleben Sie La Bella</h2>
+    </div>
+    <!-- dots -->
+    <div id="dots" style="position:absolute;bottom:1.5rem;left:50%;transform:translateX(-50%);display:flex;gap:8px;z-index:2"></div>
+    <!-- arrows -->
+    <button onclick="slidePrev()" style="position:absolute;left:1.5rem;top:50%;transform:translateY(-50%);background:rgba(201,168,76,0.2);border:1px solid var(--gold);color:var(--gold);width:44px;height:44px;border-radius:50%;font-size:1.2rem;cursor:pointer;z-index:2;backdrop-filter:blur(4px)">‹</button>
+    <button onclick="slideNext()" style="position:absolute;right:1.5rem;top:50%;transform:translateY(-50%);background:rgba(201,168,76,0.2);border:1px solid var(--gold);color:var(--gold);width:44px;height:44px;border-radius:50%;font-size:1.2rem;cursor:pointer;z-index:2;backdrop-filter:blur(4px)">›</button>
+  </section>
+  <script>
+    var cur=0,total=5,timer;
+    var ss=document.getElementById('slideshow');
+    var dotsEl=document.getElementById('dots');
+    for(var i=0;i<total;i++){var d=document.createElement('button');d.setAttribute('data-i',i);d.style.cssText='width:8px;height:8px;border-radius:50%;border:none;background:'+(i===0?'#c9a84c':'rgba(201,168,76,0.4)');d.style.cursor='pointer';d.onclick=(function(x){return function(){goTo(x)}})(i);dotsEl.appendChild(d);}
+    function goTo(n){cur=n;ss.style.transform='translateX(-'+n*100+'%)';dotsEl.querySelectorAll('button').forEach(function(d,i){d.style.background=i===n?'#c9a84c':'rgba(201,168,76,0.4)'});}
+    function slideNext(){goTo((cur+1)%total);resetTimer();}
+    function slidePrev(){goTo((cur-1+total)%total);resetTimer();}
+    function resetTimer(){clearInterval(timer);timer=setInterval(function(){goTo((cur+1)%total);},4500);}
+    timer=setInterval(function(){goTo((cur+1)%total);},4500);
+  </script>
+
   <section class="section menu-bg" id="speisekarte">
     <div class="section-inner">
       <span class="section-tag">Unsere Küche</span>
